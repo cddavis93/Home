@@ -9,8 +9,8 @@ rank = comm.Get_rank()
 size = comm.Get_size()
 start = MPI.Wtime()
 
-real = np.array([0.,1.,0.,0.,0.,0.,0.,0.])
-imag = np.array([0.,0.,0.,0.,0.,0.,0.,0.])
+real = np.array([0.,1.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,1.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,1.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,1.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.])
+imag = np.array([0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.,0.])
 
 #real = np.array([0.,1.,2.,3.,4.,5.,6.,7.])
 #imag = np.array([8.,9.,10.,11.,12.,13.,14.,15.])
@@ -34,7 +34,7 @@ mas_sumimag = 0.0
 comm.Bcast(real,root=0)
 comm.Bcast(imag,root=0)
 
-print (rank, loc_real, loc_imag)
+#print (rank, loc_real, loc_imag)
 
 
 for k in range(rank*n/size,n/size*(rank+1)): #n/size,size):  # For each output element
@@ -56,7 +56,7 @@ for k in range(rank*n/size,n/size*(rank+1)): #n/size,size):  # For each output e
 		loc_outreal = np.append(loc_outreal,loc_sumreal)
 		loc_outimag = np.append(loc_outimag,loc_sumimag)
 	
-	print (rank, k, loc_outreal, loc_outimag)
+	#print (rank, k, loc_outreal, loc_outimag)
 	#print (loc_outreal)
 	#print (loc_outimag)
 
@@ -67,9 +67,9 @@ comm.Gather(loc_outimag,outimag,root=0)
 if (rank == 0):
 	finish = MPI.Wtime()
 	time = finish - start
-	print ("Final arrays")	
-	print outreal
 	print ("Time: ")
 	print time
+	print ("Final arrays")	
+	print outreal
 	print outimag
 
