@@ -41,8 +41,8 @@ for k in range(rank*n/size,n/size*(rank+1)): #n/size,size):  # For each output e
 	#print("loop")
 	#print(k)
 
-	for t in range(rank*n/size,n/size*(rank+1)): #2*rank,2*(rank+1)): #0,n/size,size):  # For each input element
-		angle = 2 * math.pi * t * k / n
+	for t in range(0,n/size): #rank*n/size,n/size*(rank+1)): #2*rank,2*(rank+1)): #0,n/size,size):  # For each input element
+		angle = 2 * math.pi * (t+ rank*n/size) * k / n #t * k / n # 
 		loc_sumreal +=  loc_real[t] * math.cos(angle) + loc_imag[t] * math.sin(angle)
 		loc_sumimag += -loc_real[t] * math.sin(angle) + loc_imag[t] * math.cos(angle)
 
