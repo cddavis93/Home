@@ -28,6 +28,9 @@ mas_sumimag = 0.0
 comm.Scatter(real,loc_real,root=0)
 comm.Scatter(imag,loc_imag,root=0)
 
+print (rank)
+print (loc_real)
+print (loc_imag)
 
 for k in range(0,n/size,size):  # For each output element
 	loc_sumreal = 0.0
