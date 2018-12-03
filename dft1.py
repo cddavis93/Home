@@ -8,8 +8,11 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-real = np.array([0.,1.,2.,3.,4.,5.,6.,7.])
-imag = np.array([8.,9.,10.,11.,12.,13.,14.,15.])
+real = np.array([0.,1.,0.,0.,0.,0.,0.,0.])
+imag = np.array([0.,0.,0.,0.,0.,0.,0.,0.])
+
+#real = np.array([0.,1.,2.,3.,4.,5.,6.,7.])
+#imag = np.array([8.,9.,10.,11.,12.,13.,14.,15.])
 
 assert len(real) == len(imag)
 n = len(real)
@@ -31,19 +34,19 @@ comm.Scatter(imag,loc_imag,root=0)
 print (rank, loc_real, loc_imag)
 
 
-for k in range(0,n/size,size):  # For each output element
+for k in range(rank*n/size,n/size*(rank+1)): #n/size,size):  # For each output element
 	loc_sumreal = 0.0
 	loc_sumimag = 0.0
 
 	#print("loop")
 	#print(k)
 
-	for t in range(0,n/size,size):  # For each input element
+	for t in range(rank*n/size,n/size*(rank+1)): #2*rank,2*(rank+1)): #0,n/size,size):  # For each input element
 		angle = 2 * math.pi * t * k / n
 		loc_sumreal +=  loc_real[t] * math.cos(angle) + loc_imag[t] * math.sin(angle)
 		loc_sumimag += -loc_real[t] * math.sin(angle) + loc_imag[t] * math.cos(angle)
 
-	if (k == 0):
+	if (k == 2*rank):
 		loc_outreal = np.array([loc_sumreal])
 		loc_outimag = np.array([loc_sumimag])
 	else:	
