@@ -8,8 +8,8 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-real = np.array([0.,1.,0.,0.,0.,0.,0.,0.])
-imag = np.array([0.,0.,0.,0.,0.,0.,0.,0.])
+real = np.array([0.,1.,2.,3.,4.,5.,6.,7.])
+imag = np.array([8.,9.,10.,11.,12.,13.,14.,15.])
 
 assert len(real) == len(imag)
 n = len(real)
