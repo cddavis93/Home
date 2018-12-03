@@ -7,6 +7,7 @@ import cmath
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
+start = MPI.Wtime()
 
 real = np.array([0.,1.,0.,0.,0.,0.,0.,0.])
 imag = np.array([0.,0.,0.,0.,0.,0.,0.,0.])
@@ -64,7 +65,11 @@ comm.Gather(loc_outreal,outreal,root=0)
 comm.Gather(loc_outimag,outimag,root=0)
 
 if (rank == 0):
+	finish = MPI.Wtime()
+	time = finish - start
 	print ("Final arrays")	
 	print outreal
+	print ("Time: ")
+	print time
 	print outimag
 
