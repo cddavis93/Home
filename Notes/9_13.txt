@@ -1,0 +1,19 @@
+Tuesday September 13 Notes
+
+tests to be run today, for walker 8/16
+8: hpc perf, threading
+16: hotspot, hpc perf, threading
+
+Morning - exclusive runs
+walker 8 runs complete
+
+Lunch
+
+walker 16 runs complete
+
+sifting through data
+
+will discuss with Varun about using huge page
+is avx worth pursuing with 0.4% vectorization?
+how exactly do I do a scaling study?
+also sent an update by email

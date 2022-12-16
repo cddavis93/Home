@@ -1,0 +1,23 @@
+Thursday September 8 Notes
+
+Morning:
+QMCPACK requries xml as input
+https://sdrbench.github.io/ QMCPACK dataset is a .f32 file type
+when opened in notepad it is all chinese characters
+
+also look into Time Limits (and .STOP) for QMCPACK
+produces a clean stop to execution
+
+will begin moving forward with coral2 dataset with vtune
+
+ran performance-snapshot, will run hotspots and HPC Perf Char
+vectorization = 3.4%
+
+hotspots run works
+
+
+was getting a "too many open files" error for hpc-performance ??
+HPC run worked but needed to increase the soft file limit: ulimit -n 2048 was sufficient
+
+working on creating a bash script for vtune runs
+

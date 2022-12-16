@@ -1,0 +1,24 @@
+Wednesday November 2 Notes
+
+Things to do:
+
+Trace Correlation Metrics
+temporal locality
+spatial locality
+memory entropy
+
+build simnow disk image:
+Questions about Create SimNow BSD for AVX512 applications
+dont need simnow to build the image
+use VBox to build disk image
+
+Creating Disk Image
+created new VM in VBox using steps listed
+installed ubutnu 18.04, just states "install an OS"
+what applications are needed? qmcpack?
+kernal command line?
+
+booting the OS "in" simnow?
+
+why is every ubuntu server iso failing install???
+all versions of ubuntu 18, 20, and 22 all failing to install

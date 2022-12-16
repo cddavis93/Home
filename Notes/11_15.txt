@@ -1,0 +1,41 @@
+Tuesday November 15 Notes
+
+trace run looks successful(?)
+most traces for VMC were created
+expected 75 samples per thread, but only reached 51
+thread0 had a full 51
+thread1 had only 8.5K instr in 51
+sample 43 is the last one that all 16 threads had traces
+steady decline in threads from sample 43 - 51
+
+additionally the qmcpack log does not show qmcpack finishing its run
+
+Count[14] = 599835997109
+Count[1] = 608125718346
+Count[8] = 603910839677
+Count[2] = 613261703482
+Count[10] = 604792577091
+Count[7] = 600472777994
+Count[9] = 598128414986
+Count[4] = 599917650227
+Count[11] = 602892387978
+Count[3] = 599327878234
+Count[15] = 601729223555
+Count[12] = 604604713755
+Count[6] = 600708550994
+Count[5] = 598653097711
+Count[13] = 600165696991
+Count[0] = 644406171885
+Number of threads ever exist = 16
+
+644 billion instr before DMC - 644000 million instr to skip
+
+
+DMC trace run was not successful
+tracing began during VMC, but the instr skip count used was for DMC
+stopped after the first sample
+between 300K and 2M instr traced across all threads
+expected 50M per thread and 75 total samples
+
+generating reuse distnace, spatial loc, and mem entropy data
+very slow to generate and nothing to show progress

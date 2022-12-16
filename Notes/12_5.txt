@@ -1,0 +1,3 @@
+Monday December 5 Notes
+
+Move away from itrace

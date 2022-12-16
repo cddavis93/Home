@@ -1,0 +1,63 @@
+Friday October 14 Notes
+
+objdump -d /home/cordavis/qmcpack_icc_flags/build/bin/qmcpack coral2_32GB.xml
+stored in pack_objdump.txt
+
+objdump is not reading input xml, but just the qmcpack binary
+
+Prgm ctr:
+first - 040afc0 - 4239296
+last - 1044b3c - 17058620
+
+difference - 2,530,676
+but each instruction is of variable length
+
+
+VMC
+first appearance of VMC in objdump:
+42f714:       e8 b7 87 0c 00          callq  4f7ed0 <_ZN11qmcplusplus13VMCFactoryNew6createERKNS_11ProjectDataERKSt8optionalINS_21EstimatorManagerInputEERNS_20WalkerConfigurationsEONS_12MCPopulationERNS_11SampleStackEP11Communicate>
+
+Start of VMC round??
+00000000004f7ed0 <_ZN11qmcplusplus13VMCFactoryNew6createERKNS_11ProjectDataERKSt8optionalINS_21EstimatorManagerInputEERNS_20WalkerConfigurationsEONS_12MCPopulationERNS_11SampleStackEP11Communicate>:
+
+
+48d940:       0f 85 b8 fb ff ff       jne    48d4fe <_ZN11qmcplusplus35QMCFixedSampleLinearOptimizeBatchedC1ERKNS_11ProjectDataEONS_14QMCDriverInputERKSt8optionalINS_21EstimatorManagerInputEEONS_14VMCDriverInputERNS_20WalkerConfigurationsEONS_12MCPopulationERNS_11SampleStackEP11Communicate+0x160e>
+48d946:       e9 b8 fb ff ff          jmpq   48d503 <_ZN11qmcplusplus35QMCFixedSampleLinearOptimizeBatchedC1ERKNS_11ProjectDataEONS_14QMCDriverInputERKSt8optionalINS_21EstimatorManagerInputEEONS_14VMCDriverInputERNS_20WalkerConfigurationsEONS_12MCPopulationERNS_11SampleStackEP11Communicate+0x1613>
+
+appears to have many jumps to above instructions
+
+DMC?
+first appearance of DMC in objdump:
+42f616:       e8 85 ae 0c 00          callq  4fa4a0 <_ZN11qmcplusplus13DMCFactoryNew6createERKNS_11ProjectDataESt8optionalINS_21EstimatorManagerInputEERNS_20WalkerConfigurationsEONS_12MCPopulationEP11Communicate>
+
+00000000004fa370 <_ZN11qmcplusplus10DMCFactory6createERNS_21MCWalkerConfigurationERNS_17TrialWaveFunctionERNS_14QMCHamiltonianEP11Communicateb>:
+4fa6fb:       e8 30 03 01 00          callq  50aa30 <_ZN11qmcplusplus14DMCDriverInput7readXMLEP8_xmlNode>
+00000000004fbee0 <_ZN11qmcplusplus14DMCDriverInputD1Ev>:
+
+================================================================================
+running imix with 2 threads and 2 walkers 
+still takes 58 minutes to run
+
+sort -t',' -k2,2 -nr prefix.imix.15182.0.interval0 | head # 8 OMPthreads 40 walkers
+VFMADD231PS,314064054085
+VMOVUPS,164541600761
+VBROADCASTSS,80695198298
+VMULPS,66310988431
+VFMADD213PS,59444168072
+VADDPS,57526075153
+MOV,44040656896
+VFMADD231PD,35624852555
+ADD,32820873918
+CMP,28130814762
+
+sort -t',' -k2,2 -nr prefix.imix.22366.0.interval0 | head # 2 OMPthreads 2 walkers
+VFMADD231PS,60881430583
+VMOVSD,51303061149
+VMOVUPS,36119542535
+MOV,34816858149
+VBROADCASTSS,15663348232
+ADD,15171800885
+CMP,13580617123
+VMULSD,13214967625
+VMULPS,12736962422
+VFNMADD213SD,12371764743

@@ -1,0 +1,8 @@
+Tuesday September 27 Notes
+
+sum L2 DTLB miss
+sum all DLTB miss for L1 miss
+
+compare DTLB with small page
+
+confirm huge page with /proc/meminfo

@@ -1,0 +1,41 @@
+11-29 Varun Meeting Notes
+
+INFO
+Have trace correlation metrics, but not quite all the memory entropy metrics
+VMC needs thread 7
+DMC needs threads 1-7
+but entropy is consistent from thread to thread
+tried using lsf, but it was killed because too much processing. trying to figure out how to request more
+
+John asked about working set size
+But unsure if spatial distance or reuse distance is used as input
+so we chose to wait until you were back to ask
+
+traces are mostly being generated, but not finishing the number of desired samples
+VMC
+first 42 samples are full 50mil instrs
+after that a thread does not meet 50mil and starts dropping out
+last thread ends at sample 51
+does not reach the desired 75 samples
+DMC
+only does 1 sample, and doesn't reach 50mil instr in any of them
+
+=======================================================================
+working set size uses reuse distances with the script
+
+set up script to count how many of the vmc traces are good
+
+look at itrace source code (itrace.cpp and header files within the directory of itrace)
+try to identify where we are allocating memory in the code
+check if we are deallocating memory or not
+either using new operator or malloc
+uses delete to free memory or free method to deallocate
+
+
+run pin tool with debug enabled (-d 1) (inside runITrace.sh) to enable debug logs
+add "2>&1" between .xml and '|' to get stderr to stdout
+run with DMC first
+
+===================================================================
+after trace files are good
+generate trace correlation metrics with the trace files

@@ -1,0 +1,8 @@
+11_1 Varun Meeting Notes
+
+posible paper topics for meeting
+cpu microarch 
+improve efficiency of load/store unit
+improving efficiency of memory system
+hardware prefectcher
+memory level paralellsim ( how many simultaneious memory requests)

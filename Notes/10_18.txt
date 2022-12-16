@@ -1,0 +1,80 @@
+Tuesday October 18 Notes
+
+Morning Goal:
+generate call graph
+
+perf doesnt want to run with qmcpack
+error while loading shared libraries: libmkl_intel_lp64.so.1: cannot open shared object file: No such file or directory
+
+this is the same/similar error I get when forgetting to source icc
+however icc is sourced
+when I run qmcpack without perf, there are no issues
+
+script needs to be run with sudo
+take sudo out of the script but run it as 'sudo ./qmc-script.sh'
+
+I have the output data from record, now I need to figure out how to read this
+
+when running perf report:
+┌─Warning:─────────────────────────────────────────────────────────┐
+│Kernel address maps (/proc/{kallsyms,modules}) were restricted.   │
+│                                                                  │
+│Check /proc/sys/kernel/kptr_restrict before running 'perf record'.│
+│                                                                  │
+│As no suitable kallsyms nor vmlinux was found, kernel samples     │
+│can't be resolved.                                                │
+│                                                                  │
+│Samples in kernel modules can't be resolved as well.              │
+│                                                                  │
+│                                                                  │
+│                                                                  │
+│Press any key...                                                  │
+└──────────────────────────────────────────────────────────────────┘
+
+report navigation help window:
+┌─Help────────────────────────────────────────────────────────┐
+│h/?/F1        Show this window                               │
+│UP/DOWN/PGUP                                                 │
+│PGDN/SPACE    Navigate                                       │ 
+│q/ESC/CTRL+C  Exit browser or go back to previous screen     │
+│                                                             │
+│For multiple event sessions:                                 │
+│                                                             │
+│TAB/UNTAB     Switch events                                  │
+│                                                             │
+│For symbolic views (--sort has sym):                         │
+│                                                             │
+│ENTER         Zoom into DSO/Threads & Annotate current symbol│
+│ESC           Zoom out                                       │
+│a             Annotate current symbol                        │
+│C             Collapse all callchains                        │
+│d             Zoom into current DSO                          │
+│E             Expand all callchains                          │
+│F             Toggle percentage of filtered entries          │
+│H             Display column headers                         │
+│L             Change percent limit                           │
+│m             Display context menu                           │
+│S             Zoom into current Processor Socket             │
+│i             Show header information                        │
+│P             Print histograms to perf.hist.N                │
+│r             Run available scripts                          │
+│s             Switch to another data file in PWD             │
+│t             Zoom into current Thread                       │
+│V             Verbose (DSO names in callchains, etc)         │
+│/             Filter symbol by name                          │
+│                                                             │ 
+│Press any key...                                             │
+└─────────────────────────────────────────────────────────────┘
+
+
+====================================================================================================
+perf report results
+Samples: 1M of event 'cycles', Event count (approx.): 935370951434
+  Children      Self  Command          Shared Object             Symbol
+-   33.09%     2.09%  qmcpack          libomp.so.5               [.] __kmp_invoke_microtask                                                                                                                                                 ◆
+   - 31.01% __kmp_invoke_microtask                                                                                                                                                                                                          ▒
+        13.39% qmcplusplus::SplineC2R<float>::evaluateDetRatios                                                                                                                                                                             ▒
+      + 9.90% qmcplusplus::SplineC2R<float>::evaluateVGL                                                                                                                                                                                    ▒
+        4.22% qmcplusplus::SoaDistanceTableAB<float, 3u, 39>::evaluate                                                                                                                                                                      ▒
+      + 1.67% qmcplusplus::fix_phase_rotate_c2c<double, double, double>                                                                                                                                                                     ▒
+        0.74% qmcplusplus::DMC::run  ***need to find this in objdump***

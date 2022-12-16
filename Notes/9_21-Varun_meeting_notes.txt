@@ -1,0 +1,43 @@
+specify flags and compiler for library and qmcpack builds
+should be all the same flags for the respective library and qmcpack builds
+
+presenting to team on Oct 7
+show this data. compiler, huge page, tlb miss rates, etc.
+
+from here only focus on aocc and icc, no gcc
+
+want to run application with 32-64 GB of memory usage
+edit: **maximum of 32GB**
+
+still use the scaling, but trace will come from 8 cores
+
+=========================================================================
+** Meeting Notes <2022-09-21 Wed>
+   - Build steps:
+     - qmcpack uses cmake
+     - building without MPI (cmake -DQMC_MPI=0)
+     - qmcpack uses BLAS and FFT library (e.g., OpenBLAS and FFTW)
+     - The application working set size depends on the walker count.
+     - *AI for Cory*: Set the walker count so that application memory usage is atmost 32GB (keep it as close to 32GB as possible)
+   - *NOTE FOR CORY*: Present to the CBE team on October 7th, 2022
+     - The presentation will be about the application profiling
+   - *AI for Varun*: Send a link to Cory about page translation (page table walk)
+   - *DONE*: Created scripts in /opt/tools to enable/disable transparent huge pages. This way sudo is not needed for the entire system
+   - *AI for Cory*: Compile qmcpack with specific CFLAGS (only do this for AOCC and ICC)
+     - For AOCC: -O3 -march=znver3 -mavx512bitalg -mavx512bw -mavx512cd -mavx512dq -mavx512er -mavx512f -mavx512ifma -mavx512pf -mavx512vbmi -mavx512vbmi2 -mavx512vl -mavx512vnni -mavx512vp2intersect -mavx512vpopcntdq -m64 -Ofast -ffast-math -I/usr/include/tirpc -Mstack_arraysf
+     - For ICC: -w -O3 -ip -xHost -fp-model fast=2 -no-prec-div -no-prec-sqrt -ftz -no-multibyte-chars -xCORE-AVX512
+   - *AI for Cory*: Have separate builds of the libraries (OpenBLAS and FFTW) for AOCC and ICC
+     - Make a backup of the directory where libraries are installed after building with each compiler. This will prevent recompiling the libraries.
+     - Before building with new compiler flags and compiler, run "make clean", "make realclean", "make distclean", or whatever is the command to clean up the existing build files. This applies to both libraries and qmcpack.
+   - *AI for Varun*: Command line to get information about avx2 and avx512 usage in the application. Only use the knob names from the below command lines because the result-dir and duration is specific to my application setup.
+     #+begin_src sh
+     vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,MEM_INST_RETIRED.ALL_LOADS:sa=400009,MEM_INST_RETIRED.ALL_STORES:sa=400009 -result-dir=instr-mix-mem -cpu-mask=0-7 -duration=1000
+     vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,FP_ARITH_INST_RETIRED.128B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.128B_PACKED_SINGLE:sa=400009,FP_ARITH_INST_RETIRED.256B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.256B_PACKED_SINGLE:sa=400009 -result-dir=instr-mix-fp1 -cpu-mask=0-7 -duration=1000
+     vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,FP_ARITH_INST_RETIRED.512B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.512B_PACKED_SINGLE:sa=400009,FP_ARITH_INST_RETIRED.SCALAR_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.SCALAR_SINGLE:sa=400009 -result-dir=instr-mix-fp2 -cpu-mask=0-7 -duration=1000
+     #+end_src sh
+   - *AI for Cory*: find optimal configuration
+     - Check vectorization using VTune
+     - Check impact of transparent huge pages
+       - measure overall performance difference (runtime)
+       - measure DTLB miss rates using VTune or LIKWID
+     - Do scaling study (number of OpenMP threads scale - 1, 2, 4, 8)

@@ -1,0 +1,33 @@
+LSF for job submitting (after tracing is done) -ETX
+
+QMCPack
+1 - build qmcpack with sample dataset
+2 - basic analysis
+	using huge page
+	with/without avx (vectorization) 512 or 256 bit instructions
+	how does it scale? - do a scaling study
+
+use conda for python versioning
+also compile using a specific compiler
+
+vtune (intel tool)
+man (manual command for tool documentation in linux)
+
+if IPC low, where are potential bottlenecks (memory - cache misses?)
+
+================================================================================
+Varun's notes
+
+** Meeting Notes <2022-08-31 Wed>
+   QMCPACK source code: https://github.com/QMCPACK/qmcpack
+   Get a sample input from https://sdrbench.github.io/
+   Some information about building QMCPACK (may be old): https://confluence.amd.com/display/SWTOOLCHAINS/Building+QMCPack+Using+AOCC
+
+   *AI for Varun*
+   - Create account for Cory (cordavis) on phrygia
+   - Add Cory to the phrygia calendar
+
+   *AI for Cory*
+   - Download, build, and run QMCPACK with the sample dataset
+   - Run performance analysis using VTune, which should already be installed on the machine
+   - Marko Scrbak would be another good point of contact.

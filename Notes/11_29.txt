@@ -1,0 +1,41 @@
+Tuesday November 29 Notes
+
+running itrace with debug active to get log files
+
+going through itrace.cpp to find memory allocations/deallocations
+
+ALLOCATIONS:
+itrace.cpp:1248:            addrTrackingObj[tid][currentPreTraceSample[tid]] = new TrackRecentAddressesBlock(currentPreTraceSample[tid], filename2.str());
+itrace.cpp:1255:            icache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:1256:            dcache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:1390:            addrTrackingObj[tid][currentPreTraceSample[tid]] = new TrackRecentAddressesBlock(currentPreTraceSample[tid], filename2.str());
+itrace.cpp:1397:            icache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:1398:            dcache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:1427:                            // will load new counts.
+itrace.cpp:2239:                            addrTrackingObj[tid][currentPreTraceSample[tid]] = new TrackRecentAddressesBlock(currentPreTraceSample[tid], filename2.str());
+itrace.cpp:2242:                            icache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:2243:                            dcache[tid][currentPreTraceSample[tid]] = new pretraceCache(512, 8, CACHELINE_SIZE);
+itrace.cpp:2431:                    pretraceFileMap[0].push_back(new ofstream());
+itrace.cpp:2446:                        pretraceFileMap[j].push_back(new ofstream());
+itrace.cpp:2454:        tracefiles.push_back(new ofstream());
+traceTlb.hpp:249:                      << physAddr << "] newRc[" << rc << "] new[0x"
+traceTlb.hpp:267:                                << "new translation is PA 0x" << hex << physAddr
+traceTlb.hpp:604:                    wayMap[GET_PAGE(addr)] = new traceTlb_t::way_t(addr,
+traceTlb.hpp:635:                        wayMap[(GET_PAGE(addr))] = new traceTlb_t::way_t(addr,
+track_addresses.hpp:152:                {INFO2("   id new   = " << new_id)}
+track_addresses.hpp:178:        os = new std::ofstream(filename.c_str(), std::ofstream::binary);
+track_addresses.hpp:187:        os = new std::ofstream(filename.c_str(), std::ofstream::binary);
+
+DEALLOCATIONS:
+itrace.cpp:476:            delete addrTrackingObj[tid][currentSample[tid]-1];
+itrace.cpp:481:            // INFO2("delete cache")
+itrace.cpp:482:            delete icache[tid][currentSample[tid]-1];
+itrace.cpp:483:            delete dcache[tid][currentSample[tid]-1];
+track_addresses.hpp:183:        delete os;
+
+
+=====================================================================================================
+the DMC trace isn't actually starting at DMC. looks to start at VMC
+checking the instr count it should work appropriately 
+
+double checking when VMC begins

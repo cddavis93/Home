@@ -1,0 +1,7 @@
+Tuesday November 8 Notes
+
+scrapping simnow, moving to itrace instead
+document all the issues on the twiki
+
+
+finish the metric scripts

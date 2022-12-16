@@ -1,0 +1,20 @@
+Friday September 9 Notes
+
+began exclusive runs on phrygia, but somehow lost the data and qmcpack
+building qmcpack again (should finish during lunch)
+need to test with mpirun, then back through vtune
+
+LUNCH
+
+back in business with qmcpack
+working to get it to run with mpirun (with however many threads it will allow)
+the process gets killed at -n 10, 32, 42, 1024
+
+how do I check for sure how many threads may be used?
+
+running on -n 4 at the moment...
+
+qmcpack w/mpirun is taking longer to run than the standard call
+
+the run (mpi/qmc only) is not finishing
+I killed it after running for ~2 hours, without calling mpirun it would finish in ~30 minutes

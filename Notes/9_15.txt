@@ -1,0 +1,31 @@
+Thursday September 15 Notes
+
+Finished building qmcpack_gcc
+
+ran 1 run with vtune
+vectorization is still very low but slightly higher
+3.3% > .4%
+and IPC is lower to about 2.0 (need to double check)
+
+need to create excel spreadsheet for all the data
+
+qmcpack_icc is building
+
+need to make changes to script
+add ability to read variables for:
+-compiler
+-run type
+-OMP threads
+-walker count (need to duplicate coral2.xml for various walker counts)
+-action type (also include shorthand name for the directory)
+-normal or huge page?
+
+Then make a higherlevel bash script that will call the lower level script
+Want to start getting comfortable with screen or tmux
+
+LUNCH
+
+may want to make the res_type done from a conditional from action_type
+scripts are finished
+if I can get Varun's huge page script I could add it
+right now it should take about 24 to run everything (before huge page)

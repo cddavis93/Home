@@ -1,0 +1,24 @@
+Wednesday November 16 Notes
+
+made progress in generating VMC trace metric files
+reuse distance takes approx  7 hours
+spatial takes approx 4 hours
+memory entropy takes approx 5 hours
+
+going to start DMC now (10am), and hope I can show by friday morning
+also decompressing memtrace files and compressing others as I go
+
+use the following python scripts from trace correlation metrics
+reuse_distance_cdf.py
+spatial_locality_metric.py
+memory_entropy.py
+
+check them along the way when possible
+
+currently checking memory entropy
+
+also using clakeopt to process dmc threads 4-7
+will help make  things quicker
+
+VMC is through to threads 4 for reuse distance and memory addr
+thread 6 for spatial

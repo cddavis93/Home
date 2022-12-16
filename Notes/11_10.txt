@@ -1,0 +1,28 @@
+Thursday November 10 Notes
+
+generating trace files
+run sudo bash qmcpack_sudo.sh
+then (in separate terminal) 
+ps aux | grep qmcpack
+to find the pid
+add that inside runITrace.sh
+
+<inst_count> = 50
+
+<samples> = 75
+
+<total_instructions_after_PC> = 37500
+
+start this run immediately after memtrace finishes (check it tonight)
+
+sudo ./runITrace.sh 0 0 0 50 37500 75 0 /phrygia-data/users/cordavis/trace_results/VMC-traces/vmctrace 0 0 0
+
+using 16 thread
+
+VMC:
+tid 5, 12 does not pass the check
+
+trace generation:
+following error appears during tracing run
+=15371:4= ERROR: retryPending:689: attempting to re-translate VA[0x0...failed
+=15371:4= WARN: GetPhysAddr:418: pfn=0x0, check_2M_page=0

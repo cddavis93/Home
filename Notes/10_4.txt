@@ -1,0 +1,46 @@
+Tuesday October 4 Notes
+
+Creating some additional graphs. Separate by DMC/VMC
+
+small metrics
+VMC start: 3351
+VMC end: 31300
+
+DMC start: 31300
+DMC end: EOF
+
+excel is terrible, and quits responding so much
+
+huge metrics
+VMC start: (36s) 2757
+VMC end: (430s) 32902
+
+DMC start: 32135
+DMC end: EOF
+
+also doing one more rebuild of aocc
+
+DTLB Miss huge
+
+VMC start: 2756
+VMC end: 28953
+
+DMC start: 28567
+DMC end: EOF
+
+################################################################################
+runs for tonight
+seperate VMC and DMC runs
+just get IPC (go back through notes for which runs those are)
+
+create tables from qmcpack scaling studies
+
+########################################################
+attempting individual VMC/DMC runs
+
+VMC looks to work normally
+interestingly it is using 20 GBs of memory
+
+DMC looks like it works, but it needs a walker count parameter added
+
+Running it all now, will pick up data tomorrow

@@ -1,0 +1,10 @@
+Thursday December 15 Notes
+
+Inside VMC.cpp
+line 97 begins steps inside of the block
+
+key functions to look at:
+advanceWalkers() - line 51 VMCBatched.cpp
+accumulate()
+saveEnsemble()
+others do not have a function definition inside of /src/QMCDrivers/VMC/

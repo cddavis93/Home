@@ -1,0 +1,11 @@
+Monday September 26 Notes
+
+Tests were run through this weekend
+DTLBmiss and Vectorization for small page didnt generate(?)
+
+csv delimiter '\t'
+
+changed delimiter to ',' 
+sent csv's to laptop
+
+created line graphs for each test

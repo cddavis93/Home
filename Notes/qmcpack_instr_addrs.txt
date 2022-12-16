@@ -1,0 +1,48 @@
+QMCPACK OBJDUMP ADDRESSES 
+
+START OF VMC/DMC:
+qmcplusplus::QMCUpdateBase::startRun(int, bool)
+00000000005a12e0 <_ZN11qmcplusplus13QMCUpdateBase8startRunEib>:
+called 2x during VMC, most likely once per thread
+called 2x during DMC, most likely once per thread
+
+000000000053eab0 <_ZN11qmcplusplus3VMC3runEv>
+VMC::run
+
+qmcplusplus::QMCUpdateBase::startBlock(int)
+00000000005a2090 <_ZN11qmcplusplus13QMCUpdateBase10startBlockEi>:
+8 during VMC
+4 during DMC
+appears to be called once per block per thread
+
+qmcplusplus::VMC::bigdummy()
+000000000053ea50 <_ZN11qmcplusplus3VMC8bigdummyEv>:
+start of VMC
+
+qmcplusplus::VMC::stepdummy()
+000000000053ea80 <_ZN11qmcplusplus3VMC9stepdummyEv>:
+8 steps during VMC (4blocks/1step each & 2 threads)
+
+qmcplusplus::QMCDriver::bigdummy()
+000000000056efd0 <_ZN11qmcplusplus9QMCDriver8bigdummyEv>:
+once each at the start of VMC/DMC
+done at the initialization(?) of MC method
+
+qmcplusplus::DMC::bigdummy()
+00000000005b5150 <_ZN11qmcplusplus3DMC8bigdummyEv>:
+start of DMC
+
+qmcplusplus::DMC::stepdummy()
+00000000005b5180 <_ZN11qmcplusplus3DMC9stepdummyEv>:
+64 steps during DMC (2blocks/16step each & 2 threads)
+start of each step
+
+
+from pmaps:
+00400000-01351000 r-xp 00000000 103:02 15346791                          /home/cordavis/qmcpack_icc_flags/build/bin/qmcpack
+01551000-01554000 r--p 00f51000 103:02 15346791                          /home/cordavis/qmcpack_icc_flags/build/bin/qmcpack
+01554000-0159c000 rw-p 00f54000 103:02 15346791                          /home/cordavis/qmcpack_icc_flags/build/bin/qmcpack
+
+
+for single thread sort
+sort -t',' -k2,2 -nr <filename> | head

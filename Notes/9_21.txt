@@ -1,0 +1,34 @@
+Wednesday September 21 Notes
+
+Morning:
+Pulling data into the spreadsheet
+
+Data notes:
+Time is generally decreases with weak scaling down, but so does computational intensity.
+Only the DTLB Store Overhead changes significantly with weak scaling
+
+Strong scaling
+performance data is very consistent
+processing time increases according to the thread/walker ratio
+
+will go through and recompile libraries and qmcpack
+rebuilding lapack and fftw using tags for aocc and icc
+rebuilt both libraries
+
+rebuilt qmcpack for aocc
+will rebuild icc tomorrow
+
+sudo rights for /opt/tools seems to be gone?
+could not run script to enable huge page
+
+standard page run on aocc with updated flags tonight
+
+Note: with coral2_16GB(?) it was using 11 GBs of memory
+currently on a check it is only using 8 GBs
+but only using 8 walkers
+may need 16
+
+aocc with flags 4 threads & 8 walkers
+vectorization jumped to 73.5%
+Packed SP FLOPS are almost exclusively 512-bit
+Packed DF FLOPS are not as good, but still about 65% are 512-bit

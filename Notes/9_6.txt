@@ -1,0 +1,20 @@
+Tuesday September 6 Notes
+
+Morning:
+automake now shows 1.16.3 is installed, maybe the system just needed a reboot?
+will be continuing work to install qmcpack dependencies
+
+update-alternatives --set automake /home/cordavis/bin/automake-1.16.3
+
+Use for configure prefix
+./configure --prefix=/home/cordavis/bin
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.2/src/hdf5-1.12.2.tar.gz
+wget https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+
+Lunch Break: boost.tar.gz downloaded - install next
+
+QMCPACK Dataset
+https://g-8d6b0.fd635.8443.data.globus.org/ds131.2/Data-Reduction-Repo/raw-data/QMCPack/SDRBENCH-QMCPack.tar.gz
+
+EOD:
+All prereq pkgs should be installed. Can go ahead and try to build QMCPACK

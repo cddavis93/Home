@@ -1,0 +1,35 @@
+Thursday October 27 Notes
+
+running with 1 thread/walker
+
+instr addr 
+QMCUpdateBase::startBlock(int)
+005a2090
+
+need to know how many times startBlock is used
+will then use -ripoccurrence 5 to try to run for DMC
+
+in the objdump file, dummy functions are never called by the VMC/DMC run functions
+
+looking for alternate functions
+
+startBlock provides data, but it's block not steps
+
+set_step() doesn't appear in objdump
+
+using startBlock:
+running imix for 2 thread/walker
+new data is 18772
+19726
+
+1 thread/walker
+19147
+
+using this need to collect VMC/DMC and then again for memtrace with temp/spat/mem entropy
+
+
+alright good data runs will be sent to trace_results
+21861 is 2 threads/walkers for VMC
+
+
+should be able to at least run memtrace and get temp/spat/mem data with VMC runs

@@ -1,0 +1,8 @@
+Thursday December 1 Notes
+
+ran with pretrace but did not set pretrace length
+now set to 1000
+run has restarted at about 10:05am
+
+writing script to count how many of the traces are good
+running to get count for past traces

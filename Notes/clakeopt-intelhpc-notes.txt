@@ -1,0 +1,13 @@
+Intel oneAPI HPC Installation Notes
+
+Following intel's installation guide Downloaded and installed to clakeopt
+
+Get started with:
+configure systeminstall cmake, pkg-config, and gnu dev tools
+
+sudo yum update
+sudo yum -y install cmake pkgconfig
+sudo yum groupinstall "Development Tools"
+
+verify installation with 
+which cmake pkg-config make gcc g++

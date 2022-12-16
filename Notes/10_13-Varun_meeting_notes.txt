@@ -1,0 +1,18 @@
+10_23 Varun meeting notes
+
+low stack reuse distance = good temporal locality
+
+concat all the output files and feed into python script for imix
+
+memtrace will provide temporal and spacial 
+
+run short intervals - how?
+
+use object dump to find the instructions being used
+figure out the instruction that starts each phase of qmcpack in order to get the prgm counter
+
+use prgm counter to run with pin tool to capture only certain parts of qmcpack
+
+
+good command to use for sorting
+sort -t',' -k2,2 -nr <filename> | head

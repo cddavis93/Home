@@ -1,0 +1,62 @@
+Wednesday October 19 Notes
+
+in call graph?
+
+VMC found
+  Children      Self  Command  Shared   Symbol
+     0.15%     0.01%  qmcpack  qmcpack  [.] qmcplusplus::VMCUpdatePbyP::advanceWalker                                                                                                                                                       ◆
+     0.07%     0.00%  qmcpack  qmcpack  [.] qmcplusplus::VMC::resetRun                                                                                                                                                                      ▒
+     0.00%     0.00%  qmcpack  qmcpack  [.] qmcplusplus::VMCUpdatePbyP::VMCUpdatePbyP  
+
+first instance:
+qmcpack  4723 [002] 7186855.931877:     889310 cycles:
+                 10427b8 __intel_avx_rep_memset+0xb8 (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  54045d qmcplusplus::VMC::resetRun+0x85d (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+qmcpack  4723 [002] 7186856.540477:     918370 cycles:
+                 1041854 __intel_avx_memmove+0x2854 (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  5a9fa1 qmcplusplus::VMCUpdatePbyP::advanceWalker+0x41 (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+qmcpack  4721 [000] 7186855.931736:     917492 cycles:
+        ffffffff873006c4 [unknown] ([unknown])
+        ffffffff872d4945 [unknown] ([unknown])
+        ffffffff872d6ffa [unknown] ([unknown])
+        ffffffff87cdce89 [unknown] ([unknown])
+        ffffffff87cdd213 [unknown] ([unknown])
+        ffffffff87348a69 [unknown] ([unknown])
+        ffffffff87349ac0 [unknown] ([unknown])
+        ffffffff8734c4e0 [unknown] ([unknown])
+        ffffffff8734cc3f [unknown] ([unknown])
+        ffffffff87204207 [unknown] ([unknown])
+        ffffffff87e0008c [unknown] ([unknown])
+            7fffed2e61fd __lll_lock_wait+0x1d (/lib/x86_64-linux-gnu/libpthread-2.27.so)
+                  5a3f3a qmcplusplus::QMCUpdateBase::setDefaults+0x82a (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  59fcfb qmcplusplus::QMCUpdateBase::QMCUpdateBase+0x2eb (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  5a985f qmcplusplus::VMCUpdatePbyP::VMCUpdatePbyP+0xf (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+
+
+DMC found
+  Children      Self  Command  Shared   Symbol
+-    0.74%     0.00%  qmcpack  qmcpack  [.] qmcplusplus::DMC::run                                                                                                                                                                           ◆
+     qmcplusplus::DMC::run                                                                                                                                                                                                                  ▒
+     0.46%     0.01%  qmcpack  qmcpack  [.] qmcplusplus::DMCUpdatePbyPWithRejectionFast::advanceWalker                                                                                                                                      ▒
+     0.05%     0.00%  qmcpack  qmcpack  [.] qmcplusplus::DMC::resetUpdateEngines                                                                                                                                                            ▒
+     0.00%     0.00%  qmcpack  qmcpack  [.] qmcplusplus::DMCUpdatePbyPWithRejectionFast::DMCUpdatePbyPWithRejectionFast                                                                                                                     ▒
+     0.00%     0.00%  qmcpack  qmcpack  [.] std::vector<qmcplusplus::TimerIDName_t<qmcplusplus::SODMCTimers>, std::allocator<qmcplusplus::TimerIDName_t<qmcplusplus::SODMCTimers> > >::~vector
+
+first instances
+
+qmcpack  4723 [002] 7186874.765107:     917700 cycles:
+                 1004b59 __libm_sse2_sincos+0xe9 (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  5bd1ba qmcplusplus::DMCUpdatePbyPWithRejectionFast::advanceWalker+0x9a (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+                  5b52b7 qmcplusplus::DMC::run+0x387 (/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack)
+
+
+
+================================================================================================================
+place a dummy function into the VMC/DMC code to signify the start of the processing phase
+
+VMC:~/<qmcpack-source>/src/QMCDrivers/VMC/VMC.cpp
+DMC:~/<qmcpack-source>/src/QMCDrivers/DMC/DMC.cpp
+
+dummy didnt work, vmc/dmc run arent ever called
+need more time looking through the source code if I want to find that point
+

@@ -1,0 +1,82 @@
+Friday October 21 Notes
+
+bigdummy function works. I can see when VMC/DMC begin
+The functions added in setStatus are good too
+It only calls QMCDriver setStatus, but not QMCDriverNew setStatus
+
+next step is determining where each block and set begin
+
+printf("==================THIS IS DMC RUN=========================\n");
+printf("===========IT IS THE START OF DMC FUNCTION================\n");
+
+inserted some dummy functions to find the start of VMC/DMC run phases
+While the dummy functions work and output to the terminal, they do not appear on the call graph from perf
+
+Each monte carlo run is split into blocks -> steps
+Currently working to identify when each block & step begins in the code
+The goal is to eventually trace a single block or step from the VMC and DMC run
+
+For blocks, look in VMC_CUDA.cpp and DMC_CUDA.cpp
+
+Estimators/TraceManager.h
+startRun: total blocks entered as input, looks like this is where each block starts?
+
+startBlock: total steps enetered as input
+
+For both functions, they don't appear to do anything or use the blocks/step count
+
+added to functions
+
+2 walkers
+2 OMP threads
+4 blocks/1 step in VMC
+2 blocks/16 steps in DMC
+
+6 of these appeared in the output
+3 times during VMC
+3 times during DMC
+void EstimatorManagerBase::start(
+  printf("==========================================================\n");
+  printf("======THIS IS POTENTIALLY START OF BLOCKS=================\n");
+  printf("=====IT IS IN ESTIMATORMANAGERBASE START FUNCTION=========\n");
+  printf("==========================================================\n");
+
+14 of these appeared in the output
+8 times during VMC
+6 times during DMC
+void EstimatorManagerBase::startBlock(
+  printf("==========================================================\n");
+  printf("======THIS IS POTENTIALLY START OF BLOCKS=================\n");
+  printf("====IT IS IN ESTIMATORMANAGERBASE START BLOCK FUNCTION====\n");
+  printf("==========================================================\n");
+
+0 of these appeared in the output
+void EstimatorManagerNew::startBlock(
+  printf("==========================================================\n");
+  printf("======THIS IS POTENTIALLY START OF BLOCKS=================\n");
+  printf("=====IT IS IN ESTIMATORMANAGERNEW START BLOCK FUNCTION====\n");
+  printf("==========================================================\n");
+
+4 of these appeared in the output
+2 during VMC
+2 during DMC
+For startRun:
+appears to be called once per thread per MC run
+QMCUpdateBase::startRun(
+  printf("==========================================================\n");
+  printf("==========THIS IS POTENTIALLY START OF BLOCKS=============\n");
+  printf("=========IT IS IN QMCUPDATEBASE START RUN FUNCTION========\n");
+  printf("==========================================================\n");
+
+
+12 of these appeared in the output
+8 during VMC
+4 during DMC
+appears to be called once per block per thread
+QMCUpdateBase::startBlock(
+  printf("==========================================================\n");
+  printf("==========THIS IS POTENTIALLY START OF BLOCKS=============\n");
+  printf("=======IT IS IN QMCUPDATEBASE START BLOCK FUNCTION========\n");
+  printf("==========================================================\n");
+
+##Monday will get steps sorted out

@@ -1,0 +1,18 @@
+Thursday September 29 Notes
+
+Running qmcpack aocc w/flags
+shows error
+Illegal instruction (core dumped)
+
+qmcpack worked with the examples, but quits when run with all coral xml files
+
+rebuilt again, but same errors
+
+ICC run - doing run for huge/small page comparison. 
+32GB file now only showing 18GB of memory usage
+64GB looks to use 33GB of memory
+
+doing another rebuild of aocc with rznv2
+will run tomorrow morning
+
+

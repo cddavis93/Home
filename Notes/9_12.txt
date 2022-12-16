@@ -1,0 +1,54 @@
+Monday September 12 Notes
+
+vtune does not like mpirun, I believe there are too many arguments for the normal command
+not gonna worry about mpi
+
+As walkers are the basic units of workload in QMC algorithms, they are loosely coupled and distributed across all the threads.
+For this reason, the best strategy to run QMCPACK efficiently is to feed enough walkers to the available threads.
+
+will start running with 8 OpenMP threads
+export OMP_NUM_THREADS=8
+
+Will play with the walker count (make it a multiple of the thread count)
+Default walker count values:
+coral2.xml - 42
+coral2_16GB.xml - 44
+coral2_32GB.xml - 126
+coral2_64GB.xml - 290
+
+changing coral2 walker count to 8
+PERF_SNAPSHOT
+recommends hotspot, hpc perf, and threading analysis
+approx 23 min of runtime
+logical/physical core utilization low: ~7.0 of 20/10 available
+choosing to only use 8 cores, and need to eliminate the hyperthreading on phrygia (sudo access/Varun)
+"true" core utilization should be ~7.0/8 for 87.5% utilization
+IPC: 2.303
+SP GFLOPS: 2.192
+DP GFLOPS: 9.813
+x87 GFLOPS: 0.001
+Average CPU Frequency: 3.691 GHz
+
+
+HOTSPOT
+
+
+walker count to 16
+recommends hotspot, hpc perf, and threading analysis
+approx 41 min of runtime
+logical/physical core utilization low: ~7.4 of 20/10 available
+choosing to only use 8 cores, and need to eliminate the hyperthreading on phrygia (sudo access/Varun)
+true core utilization should be ~7.4/8 for 92.3% utilization
+IPC: 2.325
+SP GFLOPS: 2.449
+DP GFLOPS: 10.724
+x87 GFLOPS: 0.000
+Average CPU Frequency: 3.691 GHz
+
+
+will run some more tests tomorrow, for walker 8/16
+8: hpc perf, threading
+16: hotspot, hpc perf, threading
+
+should we try OMP threads in increments of 10?
+this will match the CPU count on the machine

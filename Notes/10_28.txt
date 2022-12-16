@@ -1,0 +1,25 @@
+Friday October 28 Notes
+
+RWCBE Meeting Notes
+initially wanted to do trace steps (smallest chunk of computation)
+added dummy functions were compiled "inline"
+instead used the startBlock function call, will provide a full block's computation
+for VMC it doesnt matter (1 step per block), but DMC will be longer (16 steps per block)
+
+pintool was not tested using -ripstart in conjunction with multithreaded application
+getting instr mix worked for a single thread, but not for 2+ threads
+Varun was able to fix that yesterday in the pintool source code
+
+There are still some issues with the tool that we are actively working on and checking
+I'm doing some more runs, and we will check that we can trust the data
+
+==============================================================================
+pintool looks to be all good to 
+have imix data for VMC and DMC, will start getting memtrace 
+add to concat scrpt to find total instruction count - done
+
+memtrace is generated
+
+Figuring out how the other metrics work
+need to write bash script for running the other metrics
+

@@ -1,0 +1,41 @@
+Monday September 19 Notes
+
+Didn't get any of the uarch-exploration runs
+Will write a script to run this evening
+
+AOCC 
+OMP8 - perf-snap did not create the output.txt file ??
+threading/hpc-perf did not finish its run ?? elapsed time of ~0.1s
+
+OMP4 - 
+threading/hpc-perf did not finish run? elapsed time of 0.18s
+WTF???
+
+OMP2 same runs arent producing data
+
+None of the OMP8 runs produced an output.txt file ?? like wtf is happening??
+
+
+ICC
+OMP8 - no perfsnap
+data came from the hpc-perf run
+elapsed times have shown a range between 690-790 seconds
+
+
+GCC
+OMP8 - no perfsnap
+data came from the hpc-perf run
+Other runs look to be good
+
+=======================================
+need to run
+uarch-exploration for all compilers and threads/walkers
+
+needs performance-snapshot for all compilers on thread/walker ct 8
+
+will rerun all aocc eventually
+
+after these are run, will need to rerun with thp enabled
+@ /opt/tools run sudo ./thp-on.sh or sudo ./thp-off.sh
+
+go back through reports for time data on DMC and VMC

@@ -1,0 +1,17 @@
+Monday November 14 Notes
+
+when itrace attaches the pid of qmcpack, the qmcpack run crashes
+
+when trying to use pin to launch qmcpack, it doesn't seem to find the libraries even after sourcing
+
+
+instr count will count across all threads but individually
+sum all these and then use that number for instrs to skip
+
+varun will provide the folder path
+/opt/intel/pin-3.21.../source/tools/*Examples/...
+
+the instr count to the start of VMC is about 244 billion for thread 0 and about 200-210 billion for the remaining threads
+
+using 244000 million to skip instr
+will check in the morning

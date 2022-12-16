@@ -1,0 +1,17 @@
+Tuesday October 25 Notes
+
+cleaned up imix script and improved for scaling to N total threads
+
+ran pintool using instr addr for VMC stepdummy()
+no data was collected (2 threads/walkers)
+
+afterwards, ran with 1 thread/walker yielding the same result
+
+trying using addr for 
+QMCUpdateBase::startBlock(int)
+005a2090
+
+using startBlock generated data
+prefix.imix.8824.0.interval0
+
+using DMC stepdummy did not produce results

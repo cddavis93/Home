@@ -1,0 +1,15 @@
+Wednesday October 5 Notes
+
+looking at individual run data
+DMC is done in half the time
+I believe there is some set up missing that VMC provided
+
+
+ISCA 2021 PIM paper *look for it*
+
+Did more work on presentation slides
+added scaling study data
+added IPC data
+
+Need to add DTLB, L1/2/3 cache miss
+other metrics

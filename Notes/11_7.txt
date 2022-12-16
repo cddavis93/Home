@@ -1,0 +1,34 @@
+Monday November 7 Notes
+
+vmc/dmc memtrace has been generated for 8 threads 120 walkers
+need to process that data for entropy/locality
+very little data is shown for reuse distance using 8 threads
+
+
+get hpctoolkit running on the VM
+basetoolkit has been installed
+
+hpckit install with online/offline/apt cannot connect to the server for download
+wget doesnt even work with phrygia
+
+
+So here is where I stand with everything right now.
+metrics: I have them, but the VMC/DMC runs on 8 threads provide very little data, especially compared to 2 threads.
+I know before pintool had not been used for multiple threads, so I'm not sure what side of the run the problems come from.
+
+simnow: intel basekit is installed on the VM, but hpckit is not
+The VM cannot connect to the server for the hpckit download. online/offline shell install scripts and apt manager are not connecting to their server.
+Trying the same download on phyrgia yields the same failed results:
+HTTP request sent, awaiting response... 403 Forbidden
+2022-11-07 10:30:47 ERROR 403: Forbidden.
+
+hpckit is installed
+cmake install through apt is 3.10 but qmcpack requires 3.17
+install through source, and use ./bootstrap leads to needing openssl install
+needs "build-essential" leads to 403 error
+
+when trying to run qmcpack: error while loading shared libraries
+linking error that would exist when not sourcing icc (but icc is sourced here) wrong version of icc?
+
+this confuses me so much, now build-essential and other dependencies are now working with apt install
+installed openssl from source, but still getting "could not find openssl" with ./bootstrap

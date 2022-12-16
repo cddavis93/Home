@@ -1,0 +1,31 @@
+11-8 Varun Meeting Notes
+
+will be using ITrace
+
+need to run cpu spy perl script to get cpu register information
+
+will use "runITrace.sh" to generate trace, will need to output data to phrygia-data
+
+sudo ./runITrace.sh 0 0 0 50 100 1 0 /phrygia-data/users/cordavis/test 0 0 0 "/bin/ls"
+
+want instr/thread/step
+
+9.5 trillion instr count for DMC block (16 steps)
+	per thread ~1.2 trillion
+180 billion instr
+
+74 billion instr/thread/step
+
+1.4 trillion instr count for VMC block (1 step)
+75 billion instr
+175 billion instr/thread/step
+
+##run for VMC/DMC
+150 samples
+50m sample per 500m instr
+
+try to run qmcpack as sudo
+
+command line input example
+sudo ./runITrace.sh 0 0 0 50 100 1 0 /phrygia-data/users/cordavis/test/what 0 0 0 -p 
+

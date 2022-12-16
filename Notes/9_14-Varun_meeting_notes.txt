@@ -1,0 +1,41 @@
+White mountains in New Hampshire
+Weston MA
+
+Use transparent Huge Pages, no modification of application
+page table walk(?)
+
+use varying compilers for comparison
+aocc, gcc/g++, icc/cipc
+
+use vtune to check 
+-huge page impact (Varun will have a script to enable)
+-vectorization
+-OMP thread count for scaling (1,2,4,8)
+-collect tlb miss rates (need to check which test does that)
+
+Use Twiki page to log results/information (use other pages for reference)
+http://twiki.amd.com/twiki/bin/view/Research_ER/RWQMCPACK
+
+screen session/tmux
+
+=====================================================================================
+
+** Meeting Notes <2022-09-14 Wed>
+   - Send a link to Cory about page translation (page table walk)
+   - *AI for Varun*: Setup a script so that Cory and others can enable/disable THP with limited sudo permission
+   - *AI for Cory*: Keep the qmcpack twiki page updated
+   - Build steps:
+     - qmcpack uses cmake
+     - Used OpenMPI to build qmcpack
+     - qmcpack uses BLAS and FFT library (e.g., OpenBLAS and FFTW)
+   - *AI for Cory*: Build qmcpack
+     - Do not use MPI (cmake -DQMC_MPI=0) - but confirm if this is the only thing required
+     - Compile with AOCC (Look aocc.amd.com to find the latest version. Varun can install the latest version on phrygia if it is not already installed at /opt/AMD)
+     - Compile with ICC
+     - Compile with gcc
+   - *AI for Cory*: find optimal configuration
+     - Check vectorization using VTune
+     - Check impact of transparent huge pages
+       - measure overall performance difference (runtime)
+       - measure DTLB miss rates using VTune or LIKWID
+     - Do scaling study (number of OpenMP threads scale - 1, 2, 4, 8)

@@ -1,0 +1,26 @@
+Monday October 24 Notes
+
+QMCUpdateBase::startBlock
+looks to be the start of each processing block
+determined by print statements, but this function does not appear on the perf report
+
+
+working to find how steps are called
+inside of EstimatorManagerBase::startBlock(int steps)
+MyTime.restart() is called once.
+Does not appear that "steps" is ever used 
+
+these functions that take the step count as input, don't seem to be using the variable
+
+VMC
+a for loop for nBlocks
+a nested for loop for nSteps
+
+DMC
+do-while loop for nBlocks
+a nested for loop for nSteps
+
+8 steps during VMC (4blocks/1step each & 2 threads)
+32 steps during DMC (2blocks/16step each & 2 threads)
+
+placed details into qmcpack_instr_addrs.txt for easier access

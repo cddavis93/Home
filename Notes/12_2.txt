@@ -1,0 +1,10 @@
+Friday December 2 Notes
+
+VMC traces from 11-29 pid:32457
+298 good
+47 bad
+86% good rate
+
+
+pretrace is still running
+should be finished sometime this weekend

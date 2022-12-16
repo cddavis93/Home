@@ -1,0 +1,4 @@
+Wednesday October 26 Notes
+
+startBlock produced results with a single thread/walker
+dummy functions are yielding blank files

@@ -1,0 +1,18 @@
+Wednesday October 12 Notes
+
+trying to figure out how pintool works
+
+Usage: pin [OPTION] [-t <tool> [<toolargs>]] -- <command line>
+
+Noteable options:
+-logfile  [default pin.log]
+        The log file path and file name
+
+
+takes significantly longer to run 
+
+knobs to potentially use?
+-print_interval
+prints result files at a listed intervals
+
+still waiting on run to finish, hope it's done by tomorrow

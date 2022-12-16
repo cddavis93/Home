@@ -1,0 +1,8 @@
+Thursday November 3 Notes
+
+Got a different iso from Varun to install, and it worked
+
+working on creating the simnow disk image
+
+working on python script for sorting reuse distance data - should be modeled after imix script
+needs to group powers of 2 range together

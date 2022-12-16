@@ -1,0 +1,42 @@
+Wednesday September 7 Notes
+
+Morning:
+Beginning to build QMCPACK
+new dataset to run - CORAL-2 benchmark
+https://confluence.amd.com/display/DCGPUHPCAPP/QMCPACK#QMCPACK-FOM(singleGCD)
+
+building QMCPACK
+need extra include directories
+could not find BLAS, LAPACK, FFTW
+those are found
+
+create paths /local/bin/  and /local/include
+-- create paths not needed
+
+now needs BOOST path (and most likely HDF5)
+Boost_INCLUDE_DIR
+
+build looks good, have to reboot laptop because system updates :)
+
+Afternoon:
+test running qmcpack
+qmcpack runs with the example data
+
+not yet working with coral2_####.xml
+dataset from https://sdrbench.github.io/ is not in xml format
+
+used scp to transfer h5 files for coral2 from laptop to phrygia server
+
+qmcpack looks to work with coral2 datasets now
+didnt finish the run (was currently on ~100 minutes since start)
+
+
+
+==================================
+hdf5
+     $ cd hdf5-X.Y.Z
+            $ ./configure --prefix=/usr/local/hdf5 <more configure_flags>
+            $ make
+            $ make check                # run test suite.
+            $ make install
+            $ make check-install        # verify installation.

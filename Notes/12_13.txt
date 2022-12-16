@@ -1,0 +1,14 @@
+Tuesday December 13 Notes
+
+write a title/abstract
+
+traces that include cpu instructions as well as memory accesses
+compare traces to uarch ind metrics to verifty consistency/representation
+
+imix
+count vfma
+highlight fma, mov
+
+update tables and charts
+new tables for imix - put into a single slide
+bar chart for reuse distance

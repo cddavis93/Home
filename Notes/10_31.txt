@@ -1,0 +1,36 @@
+Monday October 31 Notes
+
+Transfer qmcpack work to clakeopt
+
+Building qmcpack:
+lapack - cmake cant find the fortran compiler
+
+
+============================
+checking for python... no
+checking for python2... /usr/bin/python2
+checking for python version... 2.7
+checking for python platform... linux2
+checking for python script directory... ${prefix}/lib/python2.7/site-packages
+checking for python extension module directory... ${exec_prefix}/lib64/python2.7/site-packages
+checking for PYTHON... no
+configure: error: Package requirements (python-2.7) were not met:
+
+Package 'python-2.7', required by 'virtual:world', not found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables PYTHON_CFLAGS
+and PYTHON_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+Configure script failed, check config.log for more info.
+
+**I DONT UNDERSTAND THIS**
+=======================================
+python2.7 is installed
+adjusted PKG_CONFIG_PATH to include /usr/bin/python2
+
+
+so far anything that needs compiler specification is not working

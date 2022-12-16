@@ -1,0 +1,26 @@
+Friday September 23 Notes
+
+Runs completed: 
+small & huge page
+aocc_flags - perf-snap, uarch
+icc_flags - perf-snap, uarch
+
+Not completed:
+all runsa (will start those this evening)
+
+with ICC vectorization shoots up to 93%
+qmcpack becomes memory bound (DRAM bound)
+
+
+use ICC going forward
+still small/huge page comparisons and scaling studies
+use the runsa vtune runs from Varun as well as the ones he will send shortly
+figure out a walker count that approaces 32GB of memory usage
+coral2_64GB.xml gets to 34GB of memory usage
+changes walker count to 288 for 8 OMP Threads (36 walkers/OMP)
+coral2_32GB.xml gets to 22GB of memory usage
+
+
+Understand what calculations are being performed in qmcpack and what problem they are trying to solve
+
+running Varun's vtune tests this evening

@@ -1,0 +1,6 @@
+Tuesday November 22 Notes
+
+finished gathering DMC/VMC correlation data
+transfering to etx machine to run memory entropy
+
+*do more tests for generating traces

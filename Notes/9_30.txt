@@ -1,0 +1,26 @@
+Friday September 30 Notes
+
+Will run aocc with new flags
+still produces Illegal Instruction ......
+
+will look to compare avx512 to avx2 (256 bit instructions)
+need to figure out what flags to use for avx2 build
+
+ICC compiler flags
+https://www.bu.edu/tech/support/research/software-and-programming/programming/compilers/intel-compiler-flags/
+
+looks like I just need to change -xCORE-AVX512 to -xCORE-AVX2
+built and will be tested after lunch
+
+rebuilding aocc using updated compiler flags to align compatibility shown by :
+https://www.intel.com/content/www/us/en/support/articles/000058341/processors/intel-xeon-processors.html
+
+LUNCH
+
+aocc build is running with qmcpack (znver2 and new flags)
+not as efficient as icc
+
+recompiled with znver3 and gives illegal instruction again
+
+running icc-avx2 with small/huge page
+will have data by monday

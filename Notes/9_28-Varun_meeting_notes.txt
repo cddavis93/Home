@@ -1,0 +1,36 @@
+September 28 Varun Meeting Notes
+
+** Meeting Notes <2022-09-28 Wed>
+   - Build steps:
+     - qmcpack uses cmake
+     - building without MPI (cmake -DQMC_MPI=0)
+     - qmcpack uses BLAS and FFT library (e.g., OpenBLAS and FFTW)
+     - The application working set size depends on the walker count.
+     - *DONE*: Set the walker count so that application memory usage is atmost 32GB (keep it as close to 32GB as possible)
+       - We are using the 32GB config file, but the memory usage is not exactly 32GB. It is around 22GB.
+       - The walker count is around 200
+   - *NOTE FOR CORY*: Present to the CBE team on October 7th, 2022
+     - The presentation will be about the application profiling
+   - *DONE*: Send a link to Cory about page translation (page table walk)
+   - *DONE*: Created scripts in /opt/tools to enable/disable transparent huge pages. This way sudo is not needed for the entire system
+   - *DONE*: Build qmcpack, openblas, and fft with ICC using AVX512 flags
+     - For ICC: -w -O3 -ip -xHost -fp-model fast=2 -no-prec-div -no-prec-sqrt -ftz -no-multibyte-chars -xCORE-AVX512
+   - *AI for Cory*: Build qmcpack, openblas, and fft with AOCC using AVX512 flags
+     - For AOCC: -O3 -march=znver3 -mavx512bitalg -mavx512bw -mavx512cd -mavx512dq -mavx512er -mavx512f -mavx512ifma -mavx512pf -mavx512vbmi -mavx512vbmi2 -mavx512vl -mavx512vnni -mavx512vp2intersect -mavx512vpopcntdq -m64 -Ofast -ffast-math -I/usr/include/tirpc -Mstack_arraysf
+     - Measure the runtime and compare to ICC
+     - Before building with new compiler flags and compiler, run "make clean", "make realclean", "make distclean", or whatever is the command to clean up the existing build files. This applies to both libraries and qmcpack.
+     - This will confirm which compiler among AOCC and ICC is better for qmcpack
+   - *Below studies are once the compiler is picked.*
+     - We are *speculatively* picking ICC for the following studies, but may have to switch to AOCC if we get better runtime with AOCC
+   - *AI for Cory*: Impact of huge page for 32GB config file
+     - compare the runtime for DMC and VMC phases
+     - compare the DTLB misses - *DONE*
+   - *AI for Cory*: Impact of avx512 over avx2 for 32GB config file
+     - compare the runtime for DMC and VMC phases
+     - To get runtime with avx2 only, you need to compile qmcpack, openblas, and fft lib with avx2 flags. Confirm with vtune that avx512 instructions are not used predominantly. There can be some avx512 instructions from other libraries, e.g. libc, but shouldn't be too many.
+       - You need to figure out which flags to use for avx2 build.
+   - *AI for Cory*: scaling study for 32GB config file
+     - no need to run with VTune. Only collect runtime for DMC and VMC phases
+   - *AI for Varun*: provide the performance counters to Cory for
+     - memory bandwidth
+     - dispatch stalls

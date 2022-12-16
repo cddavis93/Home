@@ -1,0 +1,28 @@
+Wednesday November 9 Notes
+
+DMC-memtrace is still running
+generating reuse distance
+
+continue to test runITrace.sh using -p <pid> to attach to the process
+/home/cordavis/qmcpack_icc_flags/build/bin/qmcpack coral2_32GB.xml & pid='$!' | less
+
+sudo ./runITrace.sh 0 0 0 50 100 1 0 /phrygia-data/users/cordavis/test/what 0 0 0
+
+attach -p <pid> to pin rather than itrace
+
+run sudo bash qmcpack_sudo.sh
+then (in separate terminal) 
+ps aux | grep qmcpack
+to find the pid
+add that inside runITrace.sh
+
+<inst_count> = 50
+
+<samples> = 75
+
+<total_instructions_after_PC> = 37500
+
+start this run immediately after memtrace finishes (check it tonight)
+
+# runITrace.sh <skipInstructions> <PC_to_start> <PC_occurrence> <inst_count> <total_instructions_after_PC> <samples> <pretraceLength> <prefix> <tid0 only> <count rep insts> <oversampling jitter> <commandline>
+sudo ./runITrace.sh 0 0 0 50 37500 75 0 /phrygia-data/users/cordavis/trace_results/VMC-traces/vmctrace 0 0 0

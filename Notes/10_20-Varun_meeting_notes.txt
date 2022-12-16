@@ -1,0 +1,8 @@
+10_20 Varun Meeting Notes
+
+grep for start in QMC Drivers folder
+change source code and rebuild the executible
+look into the DMC & VMC run functions
+
+eventually will find the start of each block/step in V/DMC
+get the prgm counters

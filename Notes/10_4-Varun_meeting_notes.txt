@@ -1,0 +1,63 @@
+10-4 Varun meeting notes
+
+edit xml file to run vmc and dmc independently
+
+low branch misprediction
+but high reservation stalls
+amd - scheduler queue stall (rs stall)
+amd - stalls recovering from branch mispredicition or machine clear(RA stall)
+amd - dispatch stalls (RAT stall) 
+	dont have a breakdown of them, just that they happened
+
+waiting for free execute units
+need loads to come in from memory
+
+RAT needs RS to be free to send a new instr
+could also be waiting on free registers to process
+waiting on ROB entry
+
+theoretical max memory bandwidth is 83 GB/s
+platform max 67 GB/s ~80% of max
+avg of 46 GB/s is ~55% of max
+
+** Meeting Notes <2022-10-04 Tue>
+   - *AI for Cory*: Update the build instructions on Twiki
+     - make notes about relationship between thread count and walker count
+   - *DONE*: Build qmcpack, openblas, and fft with AOCC using AVX512 flags
+     - For AOCC: -O3 -march=znver3 -mavx512bitalg -mavx512bw -mavx512cd -mavx512dq -mavx512er -mavx512f -mavx512ifma -mavx512pf -mavx512vbmi -mavx512vbmi2 -mavx512vl -mavx512vnni -mavx512vp2intersect -mavx512vpopcntdq -m64 -Ofast -ffast-math -I/usr/include/tirpc -Mstack_arraysf
+     - Measure the runtime and compare to ICC
+     - Before building with new compiler flags and compiler, run "make clean", "make realclean", "make distclean", or whatever is the command to clean up the existing build files. This applies to both libraries and qmcpack.
+     - This will confirm which compiler among AOCC and ICC is better for qmcpack
+     - *AOCC gives comparable but not better performance than ICC. znver2 is much better than znver3. The vectorization with AOCC is 79%, but with ICC is 97%*
+    - *We go with ICC*
+   - *Below studies are once the compiler is picked.*
+     - We are *speculatively* picking ICC for the following studies, but may have to switch to AOCC if we get better runtime with AOCC
+   - *DONE*: Impact of huge page for 32GB config file
+     - compare the runtime for DMC and VMC phases
+       - huge pages is 2% better than small pages
+     - compare the DTLB misses
+       - there was noticeable difference in DTLB miss rate
+       - *AI for Cory*: try to compute the averages because the figures could be misleading
+   - *Abandoning this*: Impact of avx512 over avx2 for 32GB config file
+     - compare the runtime for DMC and VMC phases
+     - To get runtime with avx2 only, you need to compile qmcpack, openblas, and fft lib with avx2 flags. Confirm with vtune that avx512 instructions are not used predominantly. There can be some avx512 instructions from other libraries, e.g. libc, but shouldn't be too many.
+       - You need to figure out which flags to use for avx2 build.
+     - compiling ICC with -xCORE-AVX2 flag still results in the same number of avx512 instructions. So we need to figure out exactly how to limit the vectorization
+       - this is not a super important so only mention if someone asks about this comparison
+   - *DONE*: scaling study for 32GB config file
+     - no need to run with VTune. Only collect runtime for DMC and VMC phases
+   - *DONE*: provide the performance counters to Cory for
+     - memory bandwidth
+       - memory bandwidth bound
+       - maximum observed utilization is 80%
+       - average memory bandwidth (throughout the run including initialization, VMC, DMC) utilization is 55%
+       - % time with high BW utilization is 70%
+     - dispatch stalls
+       - scheduler queue stalls - 593 PTC
+       - dispatch stalls - 767 PTC
+       - recovery from branch misprediction or machine clear event - 3.6 PTC
+   - *AI for Cory* Run VMC and DMC parts of the application independently.
+     - confirm that the IPC timeseries plots looks similar to when we were running the one after the other
+   - *Tracing*
+     - We will try with ITrace as that is the fastest way to begin tracing. SimNow will take a week to setup.
+     - The application seems to have similar code during entire phase, so we may not need to trace many samples.

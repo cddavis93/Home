@@ -1,0 +1,19 @@
+IMIX
+FMA could potentially contribute to the data mov instr calls
+
+data movement combins mov and broadcast instrs
+these could be reg to reg, mem to reg, reg to mem
+
+REUSE
+change label from bit lines to "cache lines"
+
+WSS
+remove the top portion of the WSS table
+and fix the numbers for the 512MB coverage
+
+Spatial
+basically says how likely are the simple HW prefetchers will perform
+
+
+demand miss is low so prefetcher is doing well
+l2 miss is high so 

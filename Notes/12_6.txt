@@ -1,0 +1,25 @@
+Tuesday December 6 Notes
+
+Calculations done from 8 threads, assuming 16 threads cuts instrs per thread in half
+
+DMC per thread per step (32 total steps)
+90 billion instr
+
+VMC per thread per step (4 total steps)
+87.5 billion instr
+
+
+#############################################################
+recompile aocc code with the new print statements for marking phases
+
+collect instruction counts for each step of aocc build
+and how many to skip for start of vmc/dmc
+
+set up simnow build for aocc
+run trace correlation for aocc
+
+
+################################################################3
+presentation
+highlight issues with qmcpack icc/aocc
+inconsistency with tools what was causing struggles

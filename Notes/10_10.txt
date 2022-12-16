@@ -1,0 +1,13 @@
+Monday October 10 Notes
+
+emailed to Jakub about configuration for cpu trace
+
+Need to work on the twiki page
+
+DO:
+1. Get access to CPUPerfTools git repository, see RWCBE Infrastructure twiki page if you don't have access to the repo.
+2. Use TraceCorrelationMetrics (CPUPerftTools/PIN/source/tools/TraceCorrelationMetrics) pin tool from the repository. 
+	See the Readme for instructions.
+
+upon 'make' gives error for missing files
+may need to write a new make.config

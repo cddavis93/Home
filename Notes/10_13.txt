@@ -1,0 +1,23 @@
+Thursday October 13 Notes
+
+tracecorrelationmetrics.so run finished
+cant yet find where the data was stored
+
+machine full?
+moving some files to /phyrgia-data/users/cordavis to clear up space
+
+figure out which flags to use
+
+-logfile ?
+-mt => allows multithreaded programs
+
+[ Error reading lock file ./.pin.log.swp: Not enough data read ]
+
+
+objdump:
+
+program counters:
+
+disassembly os section .text:
+000000000040c4e0 <main>:
+000000000040c3f0 <_start>:

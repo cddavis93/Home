@@ -1,0 +1,41 @@
+Wednesday September 14 Notes
+
+Reading on Intel Advisor
+could help us determine which portions of qmcpack can be vectorized for performance benefit
+
+reading on using huge pages
+
+grep Huge /proc/meminfo
+shows current max page size
+
+then write: vm.nr_hugepages = 1024 (or another number)
+to: /etc/sysctl.conf
+reload the config with: sysctl -p
+but the file is unwritable as a non-sudo user
+
+====================================
+for setting AOCC (?)
+
+export FC=flang
+export CC=clang
+export CXX=clang++
+export AR=llvm-ar
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
+
+
+#aocc path
+/opt/amd/aocc-compiler-3.1.0
+
+==================================================
+
+building for aocc having issues 
+-- libstdc++/C++ compiler version compatibility check failed
+libstdc++ not for aocc/llvm/clang
+needs libc++ (?) 
+how to link it for the build
+
+================================================
+gcc building
+need to "source setenv_AOCC.sh"
+in /opt/amd/

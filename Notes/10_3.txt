@@ -1,0 +1,35 @@
+Monday (it's) October 3rd Notes
+
+AVX2 seems to yield identical results as avx512
+
+For today:
+how to get memory bandwidth with -collect memory-access
+**use** -knob dram-bandwidth-limits=true
+
+set up script for metrics from Varun:
+for memory bandwidth, I think you can run vtune -collect memory-access analysis. You will have to figure out how to use it though.
+For dispatch stalls, use UOPS_EXECUTED.STALL_CYCLES
+This counts cycles during which no uops were dispatched from the Reservation Station (RS) per thread.
+There is no breakdown information.
+Another useful metric, INT_MISC.RECOVERY_CYCLES : 
+	Core cycles the Resource allocator was stalled due to recovery from an 
+	earlier branch misprediction or machine clear event
+UOPS_ISSUED.STALL_CYCLES : Counts cycles during which the Resource Allocation Table (RAT)
+	does not issue any Uops to the reservation station (RS) for the current thread
+It would be nice to see timeseries (PTC - per thousand cycles) for these metrics.
+PTC is similar to PTI, but the denominator is the cycles.
+So you need to make sure that the CPU_CLK... metric is also collected.
+
+CPU_CLK_UNHALTED.THREAD       Core cycles when the thread is not in halt state
+
+**use this**CPU_CLK_UNHALTED.THREAD_ANY   Core cycles when at least one thread on the
+                              physical core is not in halt state.
+
+
+
+need to start putting together presentation slides for Friday
+
+LUNCH
+
+Difference between small/huge page for all metrics are not significantly different
+Data in excel sheets

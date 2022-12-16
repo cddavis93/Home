@@ -1,0 +1,14 @@
+Friday September 16 Notes
+
+Finished & cleaned up vtune_coral script
+
+familiarized myself with tmux
+
+began filling in qmcpack twiki page
+
+will run the script this weekend to gaurantee exclusivity on phrygia
+
+added uarch-exploration to the simulation list
+
+script is running as of 5pm
+will check it tomorrow

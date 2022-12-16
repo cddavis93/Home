@@ -1,0 +1,18 @@
+Friday November 18 Notes
+
+get DMC reuse distances
+calculate spatial locality for dmc 
+and reuse distances for VMC
+
+Davis, Cory This disk has plenty of space to drop the memtrace on:
+/proj/research_intr
+I then submitted Varun's command to LSF which seemed to have plenty of temporary space.
+I forgot what the space requirement is, but it was x times the memtrace required
+
+
+Use lsf to get memory entropy run
+command line provided by Travis
+
+lsf_bsub -q regr_high -P occ-perf -G occ-perf -oo /dev/null -eo /dev/null -R "select[(type==RHEL7_64) && (csbatch)] rusage[mem=16384]" <MEMORY_ENTROPY_CMD_LINE>
+
+working on transfering everything I need to the etx machine

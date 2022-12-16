@@ -1,0 +1,17 @@
+Friday December 9 Notes
+
+folder path for aocc qmcpack disk image
+/proj/pf-occinfra/users/cordavis/qmcpack_aocc/Ubuntu_AOCC-flat.vmdk
+script to run qmcpack inside disk image
+/home/cordavis/qmcpack_run.sh
+
+username:cordavis
+password:cordavis
+
+
+addr of startBlock (same function used for ICC)
+to be used for trace correlation with PIN tool
+0x00442700
+
+also add function address for start run of VMC/DMC
+and the paths to those files

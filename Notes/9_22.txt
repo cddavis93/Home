@@ -1,0 +1,30 @@
+Thursday September 22 Notes
+
+thp script is good to go again
+will need to rerun everything, but can now do it with huge page
+
+building icc with flags this morning
+
+use vtune knobs below:
+
+vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,MEM_INST_RETIRED.ALL_LOADS:sa=400009,MEM_INST_RETIRED.ALL_STORES:sa=400009 -result-dir=instr-mix-mem -cpu-mask=0-7 -duration=1000
+vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,FP_ARITH_INST_RETIRED.128B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.128B_PACKED_SINGLE:sa=400009,FP_ARITH_INST_RETIRED.256B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.256B_PACKED_SINGLE:sa=400009 -result-dir=instr-mix-fp1 -cpu-mask=0-7 -duration=1000
+vtune -collect-with runsa -knob event-config=INST_RETIRED.ANY,FP_ARITH_INST_RETIRED.512B_PACKED_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.512B_PACKED_SINGLE:sa=400009,FP_ARITH_INST_RETIRED.SCALAR_DOUBLE:sa=400009,FP_ARITH_INST_RETIRED.SCALAR_SINGLE:sa=400009 -result-dir=instr-mix-fp2 -cpu-mask=0-7 -duration=1000
+
+
+need to finish new knob script
+
+LUNCH
+
+scripts should be good to go
+will run it all later in the day when exclusivity is available
+
+what is this??
+libmkl_intel_lp64.so.1: cannot open shared object file: No such file or directory
+impacting aocc and icc
+must be due to MLK_ROOT in build?
+
+Doing a rebuild of qmcpack for aocc
+Will try to run it after getting home
+
+rebuilt both versions, it is now running

@@ -1,0 +1,47 @@
+Monday October 17 Notes
+
+Things to do:
+I have pgrm counters for places where vmc/dmc is done
+need to figure out if those are the right spots
+
+concat the thread files and sort
+need to make it scalable now
+
+=====================================================================
+A few tips:
+
+The long name you see in objdump is because C++ mangles the long function or class signatures.
+You can demangle them using “c++filt <mangled name>”
+
+Objdump only provides you a representation of the static code.
+It shows you the address of the instructions in the binary.
+The code when loaded in memory will usually be at a different address that can be computed as <binary load address>+<address in the objdump>.
+You can get the <binary load address> of the application executable and shared library files using the Linux pmaps command, or through the proc file system, /prod/<pid>/maps file.
+
+One option is to look at the applications call graph.
+That will tell you what function call the VMC or DMC routines.
+You can then look at the instructions in that function in objdump.
+
+You can get information about call graph and how to generate call graph here:
+https://brendangregg.com/perf.html
+
+In regard to determining pid:
+It will be your application’s pid.
+Every time you start the application, the OS gives it a new pid.
+
+I’m guessing that you are using the bash shell.
+It has some special variables, one of which gives you the pid of the most recent program that was put in background.
+https://www.gnu.org/software/bash/manual/html_node/Special-Parameters.html
+
+Something like the following will give you the pmaps file in your current directory.
+I don’t know exactly how you run the application, so you may have to do something different.
+./startQMCPACK &
+pid=`$!`
+cat /proc/$pid/maps > pmaps.txt
+
+=================================================================================
+perf record [-e <EVENT> | --event=EVENT] [-a] — <command> [<options>]
+
+Events to look at: 
+instructions
+use -a

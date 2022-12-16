@@ -1,0 +1,18 @@
+Friday November 11 Notes
+
+VMC trace ran without issue
+
+DMC is running but got these warnings across all threads:
+=23538:0= WARN: GetPhysAddr:418: pfn=0x0, check_2M_page=0
+=23538:12= WARN: GetPhysAddr:418: pfn=0x0, check_2M_page=0
+
+
+but then continued on, but again has returned to errors ;
+=23538:15= WARN: GetPhysAddr:418: pfn=0x0, check_2M_page=0
+=23538:15= ERROR: retryPending:689: attempting to re-translate VA[0x0...failed
+
+
+moved away from simnow to use itrace (easier setup)
+currently generating the trace
+
+sudo /home/cordavis/CPUPerfTools/PIN/source/tools/ITrace/runITrace.sh 0 0 0 50 37500 75 0 /phrygia-data/users/cordavis/trace_results/VMC-traces/24808/vmctrace 0 0 0 -- /home/cordavis/qmcpack_icc_flags/build/bin/qmcpack coral2_32GB.xml

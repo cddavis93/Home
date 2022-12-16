@@ -1,0 +1,37 @@
+Thursday October 6 Notes
+
+more working on team presentation
+
+Huge L1 MISS VMC
+35s-375s
+2657:28826
+
+Small L1 MISS VMC
+45s-390s
+3377:29254
+
+Huge L2 MISS VMC
+35s-375s
+2701:28919
+
+Small L2 MISS VMC
+45s-390s
+3371:29195
+
+Huge L3 MISS VMC
+36s-370s
+2740:28414
+
+Small L3 MISS VMC
+47s-390s
+3504:29056
+
+
+===========================================================
+Need to add Vectorization breakdown
+and metrics
+
+How to conclude?
+What other inferences can be made?
+
+Ask Varun why L2 miss is more frequent PTI than L3

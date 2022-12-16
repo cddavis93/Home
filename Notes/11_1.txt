@@ -1,0 +1,88 @@
+Tuesday November 1 Notes
+
+Errors
+
+for libxml2
+checking for python... no
+checking for python2... /usr/bin/python2
+checking for python version... 2.7
+checking for python platform... linux2
+checking for python script directory... ${prefix}/lib/python2.7/site-packages
+checking for python extension module directory... ${exec_prefix}/lib64/python2.7/site-packages
+checking for PYTHON... no
+configure: error: Package requirements (python-2.7) were not met:
+
+Package 'python-2.7', required by 'virtual:world', not found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables PYTHON_CFLAGS
+and PYTHON_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+Configure script failed, check config.log for more info.
+
+lapack 
+cmake cant find the fortran compiler (after sourcing setvars.sh)
+this just worked for whatever reason 
+
+
+fftw
+checking for gcc... icc
+checking whether the C compiler works... no
+configure: error: in `/run/user/54325/tmp/fftw-3.3.10':
+configure: error: C compiler cannot create executables
+See `config.log' for more details
+config.log:
+configure:4434: checking for C compiler version
+configure:4443: icc --version >&5
+./configure: line 4445: icc: command not found
+configure:4454: $? = 127
+configure:4443: icc -v >&5
+./configure: line 4445: icc: command not found
+configure:4454: $? = 127
+configure:4443: icc -V >&5
+./configure: line 4445: icc: command not found
+configure:4454: $? = 127
+configure:4443: icc -qversion >&5
+./configure: line 4445: icc: command not found
+configure:4454: $? = 127
+configure:4474: checking whether the C compiler works
+configure:4496: icc -w -O3 -ip -xHost -fp-model fast=2 -no-prec-div -no-prec-sqrt -ftz -no-multibyte-chars -xCORE-AVX512   conftest.c  >&5
+./configure: line 4498: icc: command not found
+
+not finding the icc compiler
+intel HPC was not installed
+
+
+=================================================================================
+HPC was installed, now most everything else is working
+
+still cannot get libxml2 installed
+following error shown, same as before but now python-3.9
+
+
+checking for python... /opt/intel/oneapi/intelpython/latest/bin/python
+checking for python version... 3.9
+checking for python platform... linux
+checking for python script directory... ${prefix}/lib/python3.9/site-packages
+checking for python extension module directory... ${exec_prefix}/lib/python3.9/site-packages
+checking for PYTHON... no
+configure: error: Package requirements (python-3.9) were not met:
+
+Package 'python-3.9', required by 'virtual:world', not found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables PYTHON_CFLAGS
+and PYTHON_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+Configure script failed, check config.log for more info.
+
+==========================================================================================
+
+using icx/icpx instead of icc/icpc
+qmcpack is finally building

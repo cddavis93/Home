@@ -1,0 +1,9 @@
+Thursday September 1 Notes
+
+Some qmcpack dependencies are taken care of
+
+libxml2 requires automake 1.16.3 to run properly
+currently automake 1.16.3 is installed in /home/cordavis/bin/
+when command is run it sources /usr/bin using version 1.15.1
+need to figure out how to source a different folder for automake
+can use bashrc? need to explore other options

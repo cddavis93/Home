@@ -1,0 +1,14 @@
+Thursday November 17 Notes
+
+More data is generated, VMC threads 0-3 memory entropy is generated
+But not sure what the metric means
+
+spatial distance is finished for all threads
+processing that data now (morning)
+
+mostly likely will not have many threads of data for DMC
+
+will need to put dmc reuse distances together. waiting for thread 1 and 4 to finish
+can currently calculate spatial locality metric from threads 0,1,4
+dmc memory entropy are pulling the error - sort: write failed: /tmp/sortiYUMlA: No space left on device
+this was on phrygia as well as clakeopt

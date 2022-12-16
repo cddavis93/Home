@@ -1,0 +1,31 @@
+Varun meeting notes 10_25
+
+confirm VMC resetRun() takes up a lot of time (and for DMC)
+
+find program counter for the start of each block/step
+
+find how many instructions are done prior to the for loop?
+
+
+use the prgm counter in objdump for step dummy, no offset needed
+use knobripstart with instr addr from objdump
+set knobripinmainthread to 0 (default value)
+
+test with pin tool, still using 2walker/2threads while confirming data is genuine
+
+keep updating the twiki, add all the vtune data from ppt slides
+
+start thinking about paper what structure would look like for topic discussion
+taking trace and figure out where efficiency can be improved?
+what are the microarchitectural bottlenecks??
+
+collecting samples of iteration runs
+samples represent full application behavior
+
+** Meeting Notes <2022-10-25 Tue>
+   - Identified the program counters for the loop iterations within the VMC and DMC phases
+   - *TODO for Cory*: Update twiki
+   - *TODO for Cory*: Collect metrics (instruction mix, spatial locality, temporal locality, and memory entropy) for VMC and DMC phases.
+   - *TODO for Varun*:
+     - Give access to Cory for clakeopt and provide instructions on how to use it
+     - Point to Mohammad Samavatian jupyter notebooks for trace correlation
